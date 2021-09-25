@@ -8,30 +8,30 @@
         @endif
         <div class="col-md-12">
             <div class="card">
-                <div class="card-header">{{ __('Artists') }} <a href="{{ url('admin/create-artist') }}" class="btn btn-outline-primary" style="float: right;">Create Artist</a></div>
+                <div class="card-header">{{ __('Songs') }} <a href="{{ url('admin/create-song') }}" class="btn btn-outline-primary" style="float: right;">Create Songs</a></div>
                 <div class="card-body">
                     <table class="table table-stripped">
                         <thead>
                             <tr>
                                 <th>SN</th>
-                                <th>Name</th>
-                                <th>Slug</th>
-                                <th>Image</th>
+                                <th>Title</th>
+                                <th>Artist</th>
+                                <th>Lyrics</th>
+                                <th>youtube_link</th>
                                 <th>Status</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($artists as $key=> $artist )
+                            @foreach ($artists->songs as $key=> $song )
                             <tr>
                                 <td>{{ $key + 1 }}</td>
-                                <td>{{ $artist->name }}</td>
-                                <td>{{ $artist->slug }}</td>
+                                <td>{{ $song->title }}</td>
+                                <td>{{ $song->artist->name }}</td>
+                                <td>{{ $song->lyrics }}</td>
+                                <td>{{ $song->youtube_link }}</td>
                                 <td>
-                                    <img src="{{ asset('uploads/artists/') }}/{{ $artist->image }}" alt="" height="40">
-                                </td>
-                                <td>
-                                    @if($artist->status == 1)
+                                    @if($song->status == 1)
                                     <span class="badge bg-success">Active</span>
                                     @else
                                     <span class="badge bg-danger">Inactive</span>
@@ -44,9 +44,8 @@
                                         </a>
 
                                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                            <li><a class="dropdown-item" href="{{ url('admin/edit-artist') }}/{{ $artist->id }}">Edit</a></li>
-                                            <li><a class="dropdown-item" href="{{ url('admin/delete-artist') }}/{{ $artist->id }}">Delete</a></li> 
-                                            <li><a class="dropdown-item" href="{{ url('admin/view-songs') }}/{{ $artist->id }}">View Songs</a></li> 
+                                            <li><a class="dropdown-item" href="{{ url('admin/edit-song') }}/{{ $song->id }}">Edit</a></li>
+                                            <li><a class="dropdown-item" href="{{ url('admin/delete-song') }}/{{ $song->id }}">Delete</a></li> 
                                         </ul>
                                     </div>
                                 </td>

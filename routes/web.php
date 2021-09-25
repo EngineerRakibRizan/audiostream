@@ -65,5 +65,14 @@ Route::group(['middleware' => ['auth', 'admin'], 'prefix' => 'admin'], function 
     Route::post('update-artist', [App\Http\Controllers\Admin\AdminController::class, 'update_artist'])->name('update.artist');
     Route::get('edit-artist/{id}', [App\Http\Controllers\Admin\AdminController::class, 'edit_artist']);
     Route::get('delete-artist/{id}', [App\Http\Controllers\Admin\AdminController::class, 'delete_artist']);
-    Route::get('create-artist', [App\Http\Controllers\Admin\AdminController::class, 'create_artist']);
+    Route::get('view-songs/{id}', [App\Http\Controllers\Admin\AdminController::class, 'view_songs']);
+    
+
+    // Songs
+    Route::get('songs', [App\Http\Controllers\Admin\AdminController::class, 'songs']);
+    Route::get('create-song', [App\Http\Controllers\Admin\AdminController::class, 'create_song']);
+    Route::post('store-song', [App\Http\Controllers\Admin\AdminController::class, 'store_song'])->name('store.song');
+    Route::post('update-song', [App\Http\Controllers\Admin\AdminController::class, 'update_song'])->name('update.song');
+    Route::get('edit-song/{id}', [App\Http\Controllers\Admin\AdminController::class, 'edit_song']);
+    Route::get('delete-song/{id}', [App\Http\Controllers\Admin\AdminController::class, 'delete_song']);
 });

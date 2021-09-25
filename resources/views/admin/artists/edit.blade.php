@@ -22,7 +22,7 @@
                         <div class="form-group mt-3">
                             <label for="">Artist Image<sup>*</sup></label>
                             <input type="file" class="form-control @error('image') is-invalid @enderror" name="image">
-                            <img src="{{ env('APP_URL') }}/storage/app/{{ $artist->image }}" alt="" height="40" class="mt-2">
+                            <img src="{{ asset('uploads/artists/') }}/{{ $artist->image }}" alt="" height="40" class="mt-2">
                         </div>
                         <div class="form-group mt-3">
                             <label for="">Artist Biography</label>

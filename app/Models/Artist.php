@@ -11,4 +11,10 @@ class Artist extends Model
 
     protected $fillable = ['name', 'slug', 'image', 'biography', 'status'];
     
+
+    public function songs()
+    {
+        return $this->hasMany(Song::class);
+    }
+    
 }
