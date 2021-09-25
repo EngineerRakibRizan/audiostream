@@ -140,6 +140,17 @@ class AdminController extends Controller
     }
     public function store_song(Request $request)
     {
+
+      // create slug
+    $slug = Str::slug($request->song_title, '-');
+
+    // check slug exist or not 
+    $exist_song_by_slug = Song::where('slug', $slug)->count();
+
+    // if slug exist then add a random number in new slug
+    if($exist_song_by_slug > 0){
+      $slug = $slug.'-'.rand(1, 100);
+    }
   
       // validate data
       $validated = $request->validate([
@@ -154,6 +165,7 @@ class AdminController extends Controller
       // store data
       Song::create([
         'user_id' => $user_id,
+        'slug' => $slug,
         'artist_id' => $request->artist_id,
         'title' => $request->song_title,
         'lyrics' => $request->song_lyrics,
